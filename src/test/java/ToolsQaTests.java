@@ -11,14 +11,14 @@ import static com.codeborne.selenide.Selenide.*;
 public class ToolsQaTests {
 
     @BeforeAll
-    static void beforeAll() {
+    static void beforeAllToolsQaTests() {
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
     }
 
     @Test
-    void toolsQa() {
+    void toolsQaRegistrationTest() {
         open("/automation-practice-form");
         $("input#firstName").setValue("John");
         $("input#lastName").setValue("Jones");
