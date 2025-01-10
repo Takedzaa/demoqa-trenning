@@ -48,7 +48,7 @@ public class ToolsQaTests {
         $$(".table-responsive tbody tr").filterBy(text("Mobile")).first().shouldHave(text("9953422203"));
         $$(".table-responsive tbody tr").filterBy(text("Date of Birth")).first().shouldHave(text("21 June,2000"));
         $$(".table-responsive tbody tr").filterBy(text("Subjects")).first().shouldHave(text("English"));
-        $$(".table-responsive tbody tr").filterBy(text("Hobbies")).first().shouldHave(text("Reading"));
+        $$(".table-responsive tbody tr").filterBy(text("Hobbies")).first().shouldHave(text("Sports, Reading, Music"));
         $$(".table-responsive tbody tr").filterBy(text("Picture")).first().shouldHave(text("ide-just-start-typing.png"));
         $$(".table-responsive tbody tr").filterBy(text("Address")).first().shouldHave(text("5th avenue"));
         $$(".table-responsive tbody tr").filterBy(text("State and City")).first().shouldHave(text("NCR Noida"));
