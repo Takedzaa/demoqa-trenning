@@ -27,7 +27,6 @@ public class RegistrationPage {
             city = $("#city"),
             submit = $("#submit");
 
-
     CalendarComponent calendarComponent = new CalendarComponent();
 
     public RegistrationPage openPage() {
@@ -118,6 +117,12 @@ public class RegistrationPage {
     public RegistrationPage fillDateOfBirthInput(String day, String month, String year) {
         calendarInput.click();
         calendarComponent.fillDate(day, month, year);
+
+        return this;
+    }
+
+    public RegistrationPage checkResultIsNotVisible() {
+        $(".modal-title").shouldNot();
 
         return this;
     }
