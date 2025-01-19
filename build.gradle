@@ -11,9 +11,11 @@ repositories {
 
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-    implementation group: 'com.codeborne', name: 'selenide', version: '7.7.0'
-}
+    testImplementation('org.junit.jupiter:junit-jupiter')
+    testImplementation(group: 'com.codeborne', name: 'selenide', version: '7.7.0')
+    testImplementation('com.github.javafaker:javafaker:1.0.2')
+    testCompileOnly 'org.projectlombok:lombok:1.18.30'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'}
 
 test {
     useJUnitPlatform()

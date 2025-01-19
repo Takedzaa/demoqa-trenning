@@ -1,4 +1,4 @@
-package qatools.page.component;
+package qatools.pages.component;
 
 import static com.codeborne.selenide.Selenide.$;
 

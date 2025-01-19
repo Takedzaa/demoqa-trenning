@@ -1,74 +1,72 @@
 package qatools.tests;
 
 import org.junit.jupiter.api.Test;
-import qatools.page.RegistrationPage;
-import qatools.page.TextBoxPage;
+import qatools.models.UserData;
+import qatools.pages.RegistrationPage;
+import qatools.pages.TextBoxPage;
 
 public class ToolsQaTests extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
     TextBoxPage textBoxPage = new TextBoxPage();
+    UserData data = new UserData();
 
     @Test
     void toolsQaRegistrationTest() {
 
         registrationPage.openPage()
-                .fillFirstName("John")
-                .fillLastNameInput("Jones")
-                .fillUserEmailInput("johnj@gmail.com")
-                .fillGenderWrapper("Other")
-                .fillUserNumberInput("9953422203")
-                .fillDateOfBirthInput("21", "June", "2000")
-                .fillSubjectsInputInput("English")
-                .fillHobbiesWrapper("Music")
-                .fillHobbiesWrapper("Reading")
-                .fillHobbiesWrapper("Sports")
+                .fillFirstName(data)
+                .fillLastName(data)
+                .fillUserEmail(data)
+                .fillGenderWrapper(data)
+                .fillUserPhoneNumber(data)
+                .fillDateOfBirth(data)
+                .fillSubjects(data)
+                .fillHobbiesWrapper(data)
                 .uploadPicture()
-                .fillCurrentAddressInput("5th avenue")
+                .fillCurrentAddress(data)
                 .clickState()
-                .fillStateCityWrapper("NCR")
+                .fillStateCityWrapper(data)
                 .clickCity()
-                .fillStateCityWrapper("Noida")
+                .fillStateCityWrapperSecond(data)
                 .clickSubmit()
-                .checkResult("Student Name", "John Jones")
-                .checkResult("Student Email", "johnj@gmail.com")
-                .checkResult("Gender", "Other")
-                .checkResult("Mobile", "9953422203")
-                .checkResult("Date of Birth", "21 June,2000")
-                .checkResult("Subjects", "English")
-                .checkResult("Hobbies", "Music, Reading, Sports")
+                .checkResult("Student Name", data.getFirstName() + " " + data.getLastName())
+                .checkResult("Student Email", data.getEmailAddress())
+                .checkResult("Gender", data.getGender())
+                .checkResult("Mobile", data.getPhoneNumber())
+                .checkResult("Date of Birth", registrationPage.formateBirthDate(data))
+                .checkResult("Subjects", data.getSubjects())
+                .checkResult("Hobbies", data.getHobbies())
                 .checkResult("Picture", "ide-just-start-typing.png")
-                .checkResult("Address", "5th avenue")
-                .checkResult("State and City", "NCR Noida");
+                .checkResult("Address", data.getCurrentAddress())
+                .checkResult("State and City", data.getCityWrapper() + " " + data.getCityWrapperSecondData());
     }
 
     @Test
     void toolsQaRegistrationNotFullDataTest() {
 
         registrationPage.openPage()
-                .fillFirstName("John")
-                .fillLastNameInput("Jones")
-                .fillGenderWrapper("Other")
-                .fillUserNumberInput("9953422203")
+                .fillFirstName(data)
+                .fillLastName(data)
+                .fillGenderWrapper(data)
+                .fillUserPhoneNumber(data)
                 .clickSubmit()
-                .checkResult("Student Name", "John Jones")
-                .checkResult("Gender", "Other")
-                .checkResult("Mobile", "9953422203");
+                .checkResult("Student Name", data.getFirstName() + " " + data.getLastName())
+                .checkResult("Gender", data.getGender())
+                .checkResult("Mobile", data.getPhoneNumber());
     }
 
     @Test
     void toolsQaRegistrationNegativeTest() {
 
         registrationPage.openPage()
-                .fillFirstName("John")
-                .fillLastNameInput("Jones")
-                .fillUserEmailInput("johnj@gmail.com")
-                .fillGenderWrapper("Other")
-                .fillDateOfBirthInput("21", "June", "2000")
-                .fillSubjectsInputInput("English")
-                .fillHobbiesWrapper("Music")
-                .fillHobbiesWrapper("Reading")
-                .fillHobbiesWrapper("Sports")
+                .fillFirstName(data)
+                .fillLastName(data)
+                .fillUserEmail(data)
+                .fillGenderWrapper(data)
+                .fillDateOfBirth(data)
+                .fillSubjects(data)
+                .fillHobbiesWrapper(data)
                 .uploadPicture()
                 .clickSubmit()
                 .checkResultIsNotVisible();
@@ -78,14 +76,13 @@ public class ToolsQaTests extends TestBase {
     void textBoxTest() {
 
         textBoxPage.openPage()
-                .fillUserNameInput("John Jones")
-                .fillUserEmailInput("johnj@gmail.com")
-                .fillCurrentAddress("5th avenue")
-                .fillPermanentAddress("10th avenue")
+                .fillUserNameInput(data)
+                .fillUserEmailInput(data)
+                .fillCurrentAddress(data)
+                .fillPermanentAddress(data)
                 .clickSubmit()
-                .checkResultTextBox("Name", "John Jones")
-                .checkResultTextBox("Email", "johnj@gmail.com")
-                .checkResultTextBox("Current Address", "5th avenue")
-                .checkResultTextBox("Permanent Address", "10th avenue");
+                .checkResultTextBox(data.getFirstName() + " " + data.getLastName(),
+                        data.getEmailAddress(), data.getCurrentAddress(), data.getPermanentAddress());
+
     }
 }
