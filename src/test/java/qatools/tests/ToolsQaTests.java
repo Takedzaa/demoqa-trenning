@@ -15,6 +15,7 @@ public class ToolsQaTests extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
     TextBoxPage textBoxPage = new TextBoxPage();
     UserData data = new UserData();
+    att att = new att();
 
     @Test
     @Tag("regUiTest")
@@ -53,6 +54,7 @@ public class ToolsQaTests extends TestBase {
                     .checkResult("Address", data.getCurrentAddress())
                     .checkResult("State and City", data.getCityWrapper() + " " + data.getCityWrapperSecondData());
         });
+        att.addVideo();
     }
 
     @Test
