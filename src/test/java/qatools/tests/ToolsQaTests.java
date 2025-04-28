@@ -2,6 +2,7 @@ package qatools.tests;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import qatools.models.UserData;
 import qatools.pages.RegistrationPage;
@@ -16,6 +17,7 @@ public class ToolsQaTests extends TestBase {
     UserData data = new UserData();
 
     @Test
+    @Tag("regUiTest")
     void toolsQaRegistrationTest() {
         step("Открыть страницу", () -> {
             registrationPage.openPage();
