@@ -4,6 +4,7 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import qatools.helpers.Attach;
 import qatools.models.UserData;
 import qatools.pages.RegistrationPage;
 import qatools.pages.TextBoxPage;
@@ -15,7 +16,6 @@ public class ToolsQaTests extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
     TextBoxPage textBoxPage = new TextBoxPage();
     UserData data = new UserData();
-    att att = new att();
 
     @Test
     @Tag("regUiTest")
@@ -54,7 +54,7 @@ public class ToolsQaTests extends TestBase {
                     .checkResult("Address", data.getCurrentAddress())
                     .checkResult("State and City", data.getCityWrapper() + " " + data.getCityWrapperSecondData());
         });
-        att.addVideo();
+        Attach.addVideo();
     }
 
     @Test

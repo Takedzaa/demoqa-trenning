@@ -34,7 +34,7 @@ tasks.withType(JavaCompile).configureEach {
 test {
     useJUnitPlatform()
 }
-task reg_ui(type: Test){
+tasks.register('reg_ui', Test) {
     useJUnit {
         include("regUiTest")
     }

@@ -1,4 +1,4 @@
-package qatools.tests;
+package qatools.helpers;
 
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -8,7 +8,8 @@ import java.net.URL;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
-public class att {
+public class Attach {
+
     @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
     public static String addVideo() {
         return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
