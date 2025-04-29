@@ -34,10 +34,10 @@ tasks.withType(JavaCompile).configureEach {
 test {
     useJUnitPlatform()
 }
-tasks.register('reg_ui', Test) {
-    useJUnitPlatform() // Для JUnit 5
+tasks.register('regUiTest', Test) {
+    useJUnitPlatform()
     filter {
-        includeTestsMatching 'regUiTest' // Точное имя метода или класса теста
+        includeTestsMatching 'ToolsQaTests.toolsQaRegistrationTest'
     }
     // Настройки для Allure
     systemProperty 'allure.results.directory', 'build/allure-results'
