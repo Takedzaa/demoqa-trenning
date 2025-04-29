@@ -34,8 +34,15 @@ tasks.withType(JavaCompile).configureEach {
 test {
     useJUnitPlatform()
 }
-task reg_ui(type: Test){
-    useJUnit {
-        include("regUiTest")
+tasks.register('reg_ui', Test) {
+    useJUnitPlatform() // Для JUnit 5
+    filter {
+        includeTestsMatching 'regUiTest' // Точное имя метода или класса теста
+    }
+    // Настройки для Allure
+    systemProperty 'allure.results.directory', 'build/allure-results'
+    // Дополнительные настройки (если нужно)
+    testLogging {
+        events 'passed', 'skipped', 'failed'
     }
 }
