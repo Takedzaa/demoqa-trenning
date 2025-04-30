@@ -33,15 +33,15 @@ tasks.withType(JavaCompile).configureEach {
 
 test {
     useJUnitPlatform()
+    systemProperties(System.getProperties())
 }
+
 tasks.register('regUiTest', Test) {
     useJUnitPlatform()
     filter {
         includeTestsMatching 'ToolsQaTests.toolsQaRegistrationTest'
     }
-    // Настройки для Allure
     systemProperty 'allure.results.directory', 'build/allure-results'
-    // Дополнительные настройки (если нужно)
     testLogging {
         events 'passed', 'skipped', 'failed'
     }

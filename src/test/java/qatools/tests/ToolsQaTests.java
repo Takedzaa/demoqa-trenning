@@ -62,25 +62,27 @@ public class ToolsQaTests extends TestBase {
 
         step("Открыть главную страницу", () -> {
             registrationPage.openPage();
-            step("Заполнить поля ввода", () -> {
-                registrationPage.fillLastName(data)
-                        .fillGenderWrapper(data)
-                        .fillUserPhoneNumber(data);
-            });
-            step("Нажать кнопку подтвердить", () -> {
-                registrationPage.clickSubmit();
-            });
-            step("Проверки теста", () -> {
-                registrationPage.checkResult("Student Name", data.getFirstName() + " " + data.getLastName())
-                        .checkResult("Gender", data.getGender())
-                        .checkResult("Mobile", data.getPhoneNumber());
-            });
         });
+        step("Заполнить поля ввода", () -> {
+            registrationPage.fillLastName(data)
+                    .fillGenderWrapper(data)
+                    .fillUserPhoneNumber(data);
+        });
+        step("Нажать кнопку подтвердить", () -> {
+            registrationPage.clickSubmit();
+        });
+        step("Проверки теста", () -> {
+            registrationPage.checkResult("Student Name", data.getFirstName() + " " + data.getLastName())
+                    .checkResult("Gender", data.getGender())
+                    .checkResult("Mobile", data.getPhoneNumber());
+        });
+
     }
 
 
     @Test
     void toolsQaRegistrationNegativeTest() {
+
         SelenideLogger.addListener("allure", new AllureSelenide());
 
         registrationPage.openPage()
@@ -98,6 +100,7 @@ public class ToolsQaTests extends TestBase {
 
     @Test
     void textBoxTest() {
+
         SelenideLogger.addListener("allure", new AllureSelenide());
 
         textBoxPage.openPage()
