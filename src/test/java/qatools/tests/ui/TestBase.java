@@ -1,4 +1,4 @@
-package qatools.tests;
+package qatools.tests.ui;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
