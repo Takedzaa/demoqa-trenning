@@ -31,17 +31,14 @@ public class DataUtils {
 
     public static LocalDate generateRandomBirthday(int minAge, int maxAge) {
         var birthDay = faker.date().birthday(minAge, maxAge);
-
         return LocalDate.ofInstant(birthDay.toInstant(), ZoneId.systemDefault());
     }
 
     public static String generateRandomGender() {
-
         return faker.options().option("Male", "Female", "Other");
     }
 
     public static String generateRandomHobbies() {
-
         return faker.options().option("Music", "Reading", "Sports");
     }
 }

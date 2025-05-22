@@ -1,40 +1,47 @@
 package qatools.tests.api;
 
 import io.restassured.RestAssured;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import qatools.models.ResponseUserData;
 import qatools.models.UserData;
 
+import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static qatools.specs.CreateUserSpecs.createUserResponseSpec;
+import static qatools.specs.CreateUserSpecs.createUserSpecs;
 
-public class ReqResTests {
+class ReqResTests {
 
     UserData data = new UserData();
 
-    @Test
-    public void postReqTest() {
-
+    @BeforeAll
+    public static void setUp() {
         RestAssured.baseURI = "https://reqres.in/";
-        String jsonBody = String.format("{\n" +
-                "    \"name\": \"%s\",\n" +
-                "    \"job\": \"leader\"\n" +
-                "}", data.getFirstName());
+    }
 
-        given()
-                .contentType("application/json")
-                .header("x-api-key", "reqres-free-v1")
-                .body(jsonBody)
-                .when()
-                .post("api/users")
-                .then()
-                .statusCode(201)
-                .body("name", equalTo(data.getFirstName()));
+    @Test
+    void postReqTest() {
+
+        var firstName = data.getFirstName();
+
+        ResponseUserData response = step("Create user", () ->
+                given(createUserSpecs)
+                        .body(data.getJsonBody())
+                        .when()
+                        .post()
+                        .then()
+                        .spec(createUserResponseSpec)
+                        .extract().as(ResponseUserData.class));
+
+        step("Check response", () -> assertEquals(firstName, response.getFirstName()));
     }
 
     @Test()
-    public void postReqRegistrationTest() {
+    void postReqRegistrationTest() {
 
-        RestAssured.baseURI = "https://reqres.in/";
         String uriPath = "{\n" +
                 "    \"email\": \"eve.holt@reqres.in\",\n" +
                 "    \"password\": \"pistol\"\n" +
@@ -52,8 +59,7 @@ public class ReqResTests {
     }
 
     @Test
-    public void getUserTest() {
-        RestAssured.baseURI = "https://reqres.in/";
+    void getUserTest() {
 
         given()
                 .header("x-api-key", "reqres-free-v1")
@@ -64,8 +70,7 @@ public class ReqResTests {
     }
 
     @Test
-    public void updateUserTest() {
-        RestAssured.baseURI = "https://reqres.in/";
+    void updateUserTest() {
         String jsonBody = "{\n" +
                 "    \"name\": \"morpheus\",\n" +
                 "    \"job\": \"leader2\"\n" +
